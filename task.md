@@ -1,6 +1,25 @@
-Great job getting the MVP working! 🎉 Here's what to tackle tomorrow and Twilio pricing info:
 
-## Tomorrow's Tasks (Priority Order):
+### going online like deploy to digitalocean 
+### run the whatsapp setup 
+### add the whole merchant setup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Phase 1: Essential Improvements
 1. **Add delivery address collection** - Ask for customer location/address during checkout
