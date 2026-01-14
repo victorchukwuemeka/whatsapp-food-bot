@@ -55,6 +55,7 @@ def interactive_test():
         response = handle_incoming_message(user_input.lower(), test_user)
         print(f"BOT: {response}\n")
 
+
 if __name__ == "__main__":
     print("Choose test mode:")
     print("1. Automated test (run all test cases)")
