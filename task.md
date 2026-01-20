@@ -98,6 +98,14 @@ ufw status
 curl http://localhost:5000
 curl http://localhost:8080
 
+
+
+
+# done with the test and all that will continue from the wtwilio hook or other platform for the bot .
+
+
+
+
 # Both should return: "WhatsApp Food Bot is running!"
 ```
 
