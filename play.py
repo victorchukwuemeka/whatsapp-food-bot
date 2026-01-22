@@ -2,43 +2,44 @@ from flask import Flask, request, jsonify
 from handlers.message_handler import handle_incoming_message
 from dotenv import load_dotenv
 import os
-import requests 
-
+import requests
 
 load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
 
+# Meta WhatsApp Cloud API credentials
 VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
 ACCESS_TOKEN = os.getenv("WHATSAPP_TOKEN")
 PHONE_NUMBER_ID = os.getenv("PHONE_NUMBER_ID")
 
-
-#where i want to handle the webhook verification
+# Webhook verification (GET request)
 @app.route('/webhook', methods=['GET'])
 def verify():
+    """Verify webhook with Meta"""
     mode = request.args.get("hub.mode")
     token = request.args.get("hub.verify_token")
-    challenge = request.args.get("challenge")
-
-    if mode ==  "subscribe" and token == VERIFY_TOKEN :
-        return challenge, 200 
+    challenge = request.args.get("hub.challenge")
+    
+    if mode == "subscribe" and token == VERIFY_TOKEN:
+        print("✅ Webhook verified!")
+        return challenge, 200
     else:
-        print("Webhook verification failed!")
+        print("❌ Webhook verification failed!")
         return "Forbidden", 403
 
-
-
-
+# Handle incoming messages (POST request)
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    """Handle incoming WhatsApp messages"""
+    """Handle incoming WhatsApp messages from Meta"""
+    
     try:
-        
+        # Get the webhook payload
         data = request.get_json()
-        print(f"Received webhook: {data}")
+        print(f"📨 Received webhook: {data}")
         
+        # Extract message details from Meta's webhook structure
         entry = data.get('entry', [])
         if not entry:
             return jsonify({'status': 'ok'}), 200
@@ -61,8 +62,8 @@ def webhook():
             if message.get('type') == 'text':
                 incoming_msg = message['text']['body'].strip().lower()
                 
-                print(f" From: {sender}")
-                print(f" Message: {incoming_msg}")
+                print(f"📱 From: {sender}")
+                print(f"💬 Message: {incoming_msg}")
                 
                 # Process the message
                 response_text = handle_incoming_message(incoming_msg, sender)
@@ -84,20 +85,20 @@ def webhook():
             
             else:
                 # Unsupported message type
-                print(f"ℹ Unsupported message type: {message.get('type')}")
+                print(f"ℹ️ Unsupported message type: {message.get('type')}")
         
         # Check if it's a status update (message delivered, read, etc.)
         elif 'statuses' in value:
             # Message status update (delivered, read, sent, failed)
             statuses = value['statuses']
             status = statuses[0]
-            print(f" Status update: {status.get('status')} for message {status.get('id')}")
+            print(f"📊 Status update: {status.get('status')} for message {status.get('id')}")
         
         return jsonify({'status': 'ok'}), 200
-    except  Exception as e :
-        print(f"Error processing webhook: {e}")
+    
+    except Exception as e:
+        print(f"❌ Error processing webhook: {e}")
         return jsonify({'status': 'error', 'message': str(e)}), 500
-
 
 def send_whatsapp_message(to, message):
     """Send WhatsApp message via Meta Cloud API"""
@@ -169,8 +170,5 @@ def health():
         'webhook_configured': True
     }), 200
 
-
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
-
-
