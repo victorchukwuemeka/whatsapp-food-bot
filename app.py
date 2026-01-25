@@ -15,88 +15,87 @@ ACCESS_TOKEN = os.getenv("WHATSAPP_TOKEN")
 PHONE_NUMBER_ID = os.getenv("PHONE_NUMBER_ID")
 
 
-#where i want to handle the webhook verification
-@app.route('/webhook', methods=['GET'])
-def verify():
-    mode = request.args.get("hub.mode")
-    token = request.args.get("hub.verify_token")
-    challenge = request.args.get("hub.challenge")
 
-    if mode ==  "subscribe" and token == VERIFY_TOKEN :
-        return challenge, 200 
-    else:
-        print("Webhook verification failed!")
-        return "Forbidden", 403
-
-
-
-
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
-    """Handle incoming WhatsApp messages"""
-    try:
+    """Handle webhook - both verification (GET) and messages (POST)"""
+    
+    if request.method == 'GET':
+        # Webhook verification
+        mode = request.args.get("hub.mode")
+        token = request.args.get("hub.verify_token")
+        challenge = request.args.get("hub.challenge")
         
-        data = request.get_json()
-        print(f"Received webhook: {data}")
+        print(f"🔍 Verification attempt:")
+        print(f"   Mode: {mode}")
+        print(f"   Token received: {token}")
+        print(f"   Token expected: {VERIFY_TOKEN}")
+        print(f"   Challenge: {challenge}")
         
-        entry = data.get('entry', [])
-        if not entry:
+        if mode == "subscribe" and token == VERIFY_TOKEN:
+            print("✅ Webhook verified!")
+            return challenge, 200
+        else:
+            print("❌ Webhook verification failed!")
+            return "Forbidden", 403
+    
+    elif request.method == 'POST':
+        # Handle incoming messages
+        try:
+            data = request.get_json()
+            print(f"📨 Received webhook: {data}")
+            
+            # Extract message details
+            entry = data.get('entry', [])
+            if not entry:
+                return jsonify({'status': 'ok'}), 200
+            
+            changes = entry[0].get('changes', [])
+            if not changes:
+                return jsonify({'status': 'ok'}), 200
+            
+            value = changes[0].get('value', {})
+            
+            # Check if it contains a message
+            if 'messages' in value:
+                messages = value['messages']
+                message = messages[0]
+                
+                # Get sender phone number
+                sender = message.get('from')
+                
+                # Get message text
+                if message.get('type') == 'text':
+                    incoming_msg = message['text']['body'].strip().lower()
+                    
+                    print(f"📱 From: {sender}")
+                    print(f"💬 Message: {incoming_msg}")
+                    
+                    # Process the message
+                    response_text = handle_incoming_message(incoming_msg, sender)
+                    
+                    # Send response back
+                    send_whatsapp_message(sender, response_text)
+                
+                else:
+                    print(f"ℹ️ Unsupported message type: {message.get('type')}")
+            
+            # Check if it's a status update
+            elif 'statuses' in value:
+                statuses = value['statuses']
+                status = statuses[0]
+                print(f"📊 Status update: {status.get('status')}")
+            
             return jsonify({'status': 'ok'}), 200
         
-        changes = entry[0].get('changes', [])
-        if not changes:
-            return jsonify({'status': 'ok'}), 200
-        
-        value = changes[0].get('value', {})
-        
-        # Check if it contains a message
-        if 'messages' in value:
-            messages = value['messages']
-            message = messages[0]
-            
-            # Get sender phone number
-            sender = message.get('from')
-            
-            # Get message text
-            if message.get('type') == 'text':
-                incoming_msg = message['text']['body'].strip().lower()
-                
-                print(f" From: {sender}")
-                print(f" Message: {incoming_msg}")
-                
-                # Process the message
-                response_text = handle_incoming_message(incoming_msg, sender)
-                
-                # Send response back
-                send_whatsapp_message(sender, response_text)
-            
-            # Handle other message types (images, locations, etc.)
-            elif message.get('type') == 'location':
-                # User shared location
-                location = message['location']
-                latitude = location.get('latitude')
-                longitude = location.get('longitude')
-                address = location.get('address', '')
-                
-                # You can handle location here
-                response_text = f"📍 Location received: {address}"
-                send_whatsapp_message(sender, response_text)
-            
-            else:
-                # Unsupported message type
-                print(f"ℹ Unsupported message type: {message.get('type')}")
-        
-        # Check if it's a status update (message delivered, read, etc.)
-        elif 'statuses' in value:
-            # Message status update (delivered, read, sent, failed)
-            statuses = value['statuses']
-            status = statuses[0]
-            print(f" Status update: {status.get('status')} for message {status.get('id')}")
-        
-        return jsonify({'status': 'ok'}), 200
-    except  Exception as e :
-        print(f"Error processing webhook: {e}")
-        return jsonify({'status': 'error', 'message': str(e)}), 500
+        except Exception as e:
+            print(f"❌ Error processing webhook: {e}")
+            import traceback
+            traceback.print_exc()
+            return jsonify({'status': 'error', 'message': str(e)}), 500
+
+
+
 
 
 def send_whatsapp_message(to, message):
