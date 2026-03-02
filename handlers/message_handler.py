@@ -350,6 +350,10 @@ def handle_incoming_message(message, sender):
 
             tool_result = execute_tool(action, params, sender)
 
+            if action == "place_order":
+                save_message(sender, "assistant", tool_result)
+                return tool_result
+
             messages.append({"role": "assistant", "content": raw})
             messages.append({"role": "user", "content": f"Action result: {tool_result}. Now use the respond action to show this EXACT result to the user word for word. Do not summarize it."})
         except Exception as e:
