@@ -8,7 +8,7 @@ USER (WhatsApp)
      | sends message
      ▼
 ┌─────────────────────────┐
-│     BRIDA BOT           │  ◄── WhatsApp API (Meta Cloud API)
+│     BRIDA BOT           │  ◄── WhatsApp API (Twilio / Meta Cloud API)
 │  (Orchestrator Agent)   │
 └─────────────────────────┘
      |              |
