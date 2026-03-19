@@ -169,7 +169,22 @@ def health():
     }), 200
 
 
+@app.route('/data-deletion', methods=['GET', 'POST'])
+def data_deletion():
+    return jsonify({'status': 'ok'}), 200
+
+@app.route('/privacy')
+def privacy():
+    return "<h1>Privacy Policy</h1><p>Bridago does not share your data with third parties.</p>", 200
+
+@app.route('/terms')
+def terms():
+    return "<h1>Terms of Service</h1><p>By using Bridago you agree to our terms of service.</p>", 200
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+
+
+
 
 
