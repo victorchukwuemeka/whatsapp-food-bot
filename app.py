@@ -3,6 +3,7 @@ from handlers.message_handler import handle_incoming_message
 from dotenv import load_dotenv
 import os
 import requests 
+from flask import render_template
 
 
 load_dotenv()
@@ -157,7 +158,7 @@ def send_whatsapp_message(to, message):
 
 @app.route('/')
 def home():
-    return "WhatsApp Food Bot is running!"
+    return render_template('index.html')
 
 @app.route('/health')
 def health():

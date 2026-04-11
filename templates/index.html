@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brida — WhatsApp Food Ordering Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #1A6BCC;
+      --blue-dark: #0F4A9A;
+      --blue-light: #E8F0FB;
+      --blue-mid: #3B82F6;
+      --white: #FFFFFF;
+      --off-white: #F7F9FC;
+      --text: #0D1B2A;
+      --text-muted: #5A6A7E;
+      --border: #D6E2F0;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Sora', sans-serif;
+      font-size: 20px; font-weight: 600;
+      color: var(--blue-dark); text-decoration: none;
+    }
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: var(--blue); display: flex; align-items: center; justify-content: center;
+    }
+    .logo-mark svg { width: 18px; height: 18px; fill: white; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue); color: white;
+      padding: 9px 20px; border-radius: var(--radius-sm);
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--blue-dark); }
+    .coming-soon { background: #e0e0e0; color: #777; cursor: default; font-size: 13px; border-radius: var(--radius-sm); padding: 9px 20px; font-weight: 500; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #EBF2FF 0%, #F7F9FC 60%);
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,107,204,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue-light); color: var(--blue-dark);
+      font-size: 13px; font-weight: 500;
+      padding: 6px 14px; border-radius: 20px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(26,107,204,0.2);
+    }
+    .hero-badge span { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); display: inline-block; }
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 600; line-height: 1.15;
+      color: var(--text);
+      max-width: 720px; margin: 0 auto 1.25rem;
+    }
+    .hero h1 em { color: var(--blue); font-style: normal; }
+    .hero p {
+      font-size: 17px; color: var(--text-muted);
+      max-width: 500px; margin: 0 auto 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue); color: white;
+      padding: 13px 28px; border-radius: var(--radius-sm);
+      font-size: 15px; font-weight: 500;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent; color: var(--blue-dark);
+      padding: 13px 28px; border-radius: var(--radius-sm);
+      font-size: 15px; font-weight: 500;
+      border: 1.5px solid var(--blue);
+      text-decoration: none; cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-ghost:hover { background: var(--blue-light); }
+
+    /* ── CHAT MOCK ── */
+    .chat-mock {
+      max-width: 340px; margin: 3rem auto 0;
+      background: white;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(26,107,204,0.1);
+    }
+    .chat-header {
+      background: #075E54; color: white;
+      padding: 14px 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .chat-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #128C7E;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 600;
+    }
+    .chat-info .chat-name { font-size: 14px; font-weight: 600; }
+    .chat-info .chat-status { font-size: 11px; opacity: 0.85; color: #25D366; }
+    .chat-body { padding: 14px; background: #ECE5DD; display: flex; flex-direction: column; gap: 8px; }
+    .bubble {
+      padding: 9px 13px; border-radius: 12px;
+      font-size: 13px; line-height: 1.5; max-width: 88%;
+    }
+    .bubble.bot { background: #ffffff; border-radius: 2px 12px 12px 12px; align-self: flex-start; color: #111; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    .bubble.user { background: #DCF8C6; color: #111; border-radius: 12px 2px 12px 12px; align-self: flex-end; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    .bubble.rider { background: #ffffff; color: #111; border-radius: 2px 12px 12px 12px; align-self: flex-start; box-shadow: 0 1px 2px rgba(0,0,0,0.1); border-left: 3px solid #25D366; }
+
+    /* ── SECTION SHARED ── */
+    .section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: .5rem; }
+    .section-title { font-family: 'Sora', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; margin-bottom: .75rem; }
+    .section-sub { font-size: 16px; color: var(--text-muted); max-width: 520px; }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 2.5rem; }
+    .step {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      position: relative;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .step:hover { border-color: var(--blue); box-shadow: 0 4px 20px rgba(26,107,204,0.08); }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--blue-light); color: var(--blue-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .step h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .step p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── FEATURES ── */
+    .features-bg { background: var(--off-white); }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 2.5rem; }
+    .feat {
+      background: white; border-radius: var(--radius);
+      border: 1px solid var(--border); padding: 1.5rem;
+      transition: transform .2s;
+    }
+    .feat:hover { transform: translateY(-3px); }
+    .feat-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .feat-icon svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .feat h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .feat p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── PRIVACY ── */
+    .privacy-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      margin-top: 2rem;
+    }
+    .privacy-card h3 { font-size: 15px; font-weight: 600; margin: 1.25rem 0 .4rem; color: var(--blue-dark); }
+    .privacy-card h3:first-child { margin-top: 0; }
+    .privacy-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 2rem; }
+    .contact-item {
+      background: var(--blue-light); border-radius: var(--radius);
+      padding: 1.25rem; border: 1px solid rgba(26,107,204,0.15);
+    }
+    .contact-item .label { font-size: 12px; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+    .contact-item .value { font-size: 14px; color: var(--blue-dark); font-weight: 500; }
+    .contact-item a { color: var(--blue-dark); text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.6);
+      padding: 2.5rem 2rem; text-align: center;
+    }
+    .footer-inner { max-width: 1000px; margin: 0 auto; }
+    .footer-logo { font-family: 'Sora', sans-serif; color: white; font-size: 18px; font-weight: 600; margin-bottom: 1rem; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-links a:hover { color: white; }
+    .footer-copy { font-size: 12px; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero { padding: 4rem 1.25rem 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      Brida
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="nav-cta coming-soon">Coming soon</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span></span> WhatsApp approval in progress</div>
+  <h1>Order food. <em>Negotiate</em> delivery.<br>All on WhatsApp.</h1>
+  <p>Brida is an AI-powered food ordering bot that lets you browse menus, place orders, and haggle your delivery fee — without leaving WhatsApp.</p>
+  <div class="hero-btns">
+    <a href="mailto:hello@brida.app" class="btn-primary">Get early access</a>
+    <a href="#how" class="btn-ghost">See how it works</a>
+  </div>
+
+  <div class="chat-mock">
+    <div class="chat-header">
+      <div class="chat-avatar">B</div>
+      <div class="chat-info">
+        <div class="chat-name">Brida</div>
+        <div class="chat-status">● online</div>
+      </div>
+    </div>
+    <div class="chat-body">
+      <div class="bubble bot">Hi! Welcome to Brida. What would you like to order today?</div>
+      <div class="bubble user">1 jollof rice + grilled chicken</div>
+      <div class="bubble bot">Your food total is <strong>₦3,500</strong>. Connecting you with a rider now...</div>
+      <div class="bubble rider">Hi! I can deliver for <strong>₦800</strong>. Want to negotiate?</div>
+      <div class="bubble user">How about ₦400?</div>
+      <div class="bubble rider">Deal at <strong>₦600</strong>! ✓ Order confirmed.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="section-inner">
+    <div class="section-label">How it works</div>
+    <div class="section-title">Four steps. Zero apps.</div>
+    <div class="section-sub">Everything happens inside WhatsApp — the app you already have.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Send a message</h3>
+        <p>Open WhatsApp, message Brida, and tell us what you want to eat.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Confirm your order</h3>
+        <p>Our restaurant agent shows your items and a fixed food total.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Negotiate delivery</h3>
+        <p>A rider agent proposes a fee. You counter, they respond — until you both agree.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Order dispatched</h3>
+        <p>Confirm the final summary and your food is on its way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features-bg" id="features">
+  <div class="section-inner">
+    <div class="section-label">Features</div>
+    <div class="section-title">Built different.</div>
+    <div class="section-sub">Not just another food app — a smarter, fairer way to order.</div>
+    <div class="features">
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Negotiate your delivery fee</h3>
+        <p>Unlike every other platform, Brida lets you haggle with a live AI rider agent until you both agree on a fair price.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>100% WhatsApp-native</h3>
+        <p>No app to download, no account to create. Just send a message and order in seconds.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>AI-powered agents</h3>
+        <p>Three specialized agents — orchestrator, restaurant, and rider — handle your order seamlessly behind the scenes.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Secure & private</h3>
+        <p>Your data is never sold or shared with third parties. We only use it to fulfill your orders.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Fast confirmation</h3>
+        <p>From first message to confirmed order in minutes, with a full summary before you commit.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Transparent pricing</h3>
+        <p>Food prices are fixed and clear. Delivery is negotiated openly. No hidden fees, ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY POLICY -->
+<section class="section" id="privacy">
+  <div class="section-inner">
+    <div class="section-label">Legal</div>
+    <div class="section-title">Privacy Policy</div>
+    <div class="section-sub">Last updated: June 2025</div>
+    <div class="privacy-card">
+      <p>Brida ("we", "our", or "us") is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our WhatsApp-based food ordering service.</p>
+      <h3>Information we collect</h3>
+      <p>When you interact with Brida via WhatsApp, we may collect your WhatsApp phone number, order history and preferences, delivery address if provided, and chat history within the service session.</p>
+      <h3>How we use your information</h3>
+      <p>We use your data solely to process and fulfill your food orders, improve our AI agents and service quality, and communicate order updates with you via WhatsApp.</p>
+      <h3>Data sharing</h3>
+      <p>We do not sell, trade, or share your personal information with third parties for marketing purposes. Order details may be shared with our restaurant and delivery partners solely to fulfill your order.</p>
+      <h3>Data retention</h3>
+      <p>Your session and order data is retained for up to 90 days for service improvement purposes, after which it is anonymized or deleted.</p>
+      <h3>Your rights</h3>
+      <p>You have the right to request access to, correction of, or deletion of your personal data at any time by contacting us at the details below.</p>
+      <h3>Changes to this policy</h3>
+      <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated date. Continued use of Brida after changes constitutes acceptance of the revised policy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section features-bg" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Get in touch</div>
+    <div class="section-title">Contact us</div>
+    <div class="section-sub">Have questions or need support? We're here to help.</div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="label">Business name</div>
+        <div class="value">Brida Technologies</div>
+      </div>
+      <div class="contact-item">
+        <div class="label">Email</div>
+        <div class="value"><a href="/cdn-cgi/l/email-protection#4129242d2d2e0123332825206f203131"><span class="__cf_email__" data-cfemail="adc5c8c1c1c2edcfdfc4c9cc83ccdddd">[email&#160;protected]</span></a></div>
+      </div>
+      <div class="contact-item">
+        <div class="label">WhatsApp</div>
+        <div class="value"><a href="#">+234 000 000 0000</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="label">Response time</div>
+        <div class="value">Within 24 hours</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Brida</div>
+    <div class="footer-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#contact">Contact</a>
+        </div>
+    <div class="footer-copy">© 2025 Brida Technologies. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
