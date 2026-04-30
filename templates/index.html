@@ -31,9 +31,7 @@
                 --radius-sm: 8px;
             }
 
-            html {
-                scroll-behavior: smooth;
-            }
+            html { scroll-behavior: smooth; }
 
             body {
                 font-family: "DM Sans", sans-serif;
@@ -42,484 +40,226 @@
                 line-height: 1.6;
             }
 
-            /* ── NAV ── */
+            /* NAV */
             nav {
-                position: sticky;
-                top: 0;
-                z-index: 100;
-                background: rgba(255, 255, 255, 0.92);
+                position: sticky; top: 0; z-index: 100;
+                background: rgba(255,255,255,0.92);
                 backdrop-filter: blur(12px);
                 border-bottom: 1px solid var(--border);
                 padding: 0 2rem;
             }
             .nav-inner {
-                max-width: 1000px;
-                margin: 0 auto;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+                max-width: 1000px; margin: 0 auto;
+                display: flex; align-items: center; justify-content: space-between;
                 height: 64px;
             }
             .logo {
-                display: flex;
-                align-items: center;
-                gap: 10px;
+                display: flex; align-items: center; gap: 10px;
                 font-family: "Sora", sans-serif;
-                font-size: 20px;
-                font-weight: 600;
-                color: var(--blue-dark);
-                text-decoration: none;
+                font-size: 20px; font-weight: 600;
+                color: var(--blue-dark); text-decoration: none;
             }
-            .logo-mark {
-                width: 34px;
-                height: 34px;
-                border-radius: 10px;
-                background: var(--blue);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .logo-mark svg {
-                width: 18px;
-                height: 18px;
-                fill: white;
-            }
-            .nav-links {
-                display: flex;
-                gap: 28px;
-                list-style: none;
-            }
-            .nav-links a {
-                font-size: 14px;
-                color: var(--text-muted);
-                text-decoration: none;
-                font-weight: 500;
-                transition: color 0.2s;
-            }
-            .nav-links a:hover {
-                color: var(--blue);
-            }
-            .nav-cta {
-                background: var(--blue);
-                color: white;
-                padding: 9px 20px;
-                border-radius: var(--radius-sm);
-                font-size: 14px;
-                font-weight: 500;
-                text-decoration: none;
-                transition: background 0.2s;
-            }
-            .nav-cta:hover {
-                background: var(--blue-dark);
-            }
+            .nav-links { display: flex; gap: 28px; list-style: none; }
+            .nav-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+            .nav-links a:hover { color: var(--blue); }
             .coming-soon {
-                background: #e0e0e0;
-                color: #777;
-                cursor: default;
-                font-size: 13px;
-                border-radius: var(--radius-sm);
-                padding: 9px 20px;
-                font-weight: 500;
+                background: #e0e0e0; color: #777; cursor: default;
+                font-size: 13px; border-radius: var(--radius-sm);
+                padding: 9px 20px; font-weight: 500;
             }
 
-            /* ── HERO ── */
+            /* HERO */
             .hero {
                 background: linear-gradient(160deg, #ebf2ff 0%, #f7f9fc 60%);
                 padding: 6rem 2rem 4rem;
-                text-align: center;
-                position: relative;
-                overflow: hidden;
+                text-align: center; position: relative; overflow: hidden;
             }
             .hero::before {
-                content: "";
-                position: absolute;
-                top: -80px;
-                right: -80px;
-                width: 400px;
-                height: 400px;
-                border-radius: 50%;
-                background: radial-gradient(
-                    circle,
-                    rgba(26, 107, 204, 0.12) 0%,
-                    transparent 70%
-                );
+                content: ""; position: absolute; top: -80px; right: -80px;
+                width: 400px; height: 400px; border-radius: 50%;
+                background: radial-gradient(circle, rgba(26,107,204,0.12) 0%, transparent 70%);
                 pointer-events: none;
             }
             .hero-badge {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                background: var(--blue-light);
-                color: var(--blue-dark);
-                font-size: 13px;
-                font-weight: 500;
-                padding: 6px 14px;
-                border-radius: 20px;
-                margin-bottom: 1.5rem;
-                border: 1px solid rgba(26, 107, 204, 0.2);
+                display: inline-flex; align-items: center; gap: 8px;
+                background: var(--blue-light); color: var(--blue-dark);
+                font-size: 13px; font-weight: 500;
+                padding: 6px 14px; border-radius: 20px; margin-bottom: 1.5rem;
+                border: 1px solid rgba(26,107,204,0.2);
             }
-            .hero-badge span {
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                background: var(--blue);
-                display: inline-block;
-            }
+            .hero-badge span { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); display: inline-block; }
             .hero h1 {
                 font-family: "Sora", sans-serif;
-                font-size: clamp(2rem, 5vw, 3.2rem);
-                font-weight: 600;
-                line-height: 1.15;
-                color: var(--text);
-                max-width: 720px;
-                margin: 0 auto 1.25rem;
+                font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600;
+                line-height: 1.15; color: var(--text);
+                max-width: 720px; margin: 0 auto 1.25rem;
             }
-            .hero h1 em {
-                color: var(--blue);
-                font-style: normal;
-            }
-            .hero p {
-                font-size: 17px;
-                color: var(--text-muted);
-                max-width: 500px;
-                margin: 0 auto 2.5rem;
-            }
-            .hero-btns {
-                display: flex;
-                gap: 12px;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
+            .hero h1 em { color: var(--blue); font-style: normal; }
+            .hero p { font-size: 17px; color: var(--text-muted); max-width: 500px; margin: 0 auto 2.5rem; }
+            .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
             .btn-primary {
-                background: var(--blue);
-                color: white;
-                padding: 13px 28px;
-                border-radius: var(--radius-sm);
-                font-size: 15px;
-                font-weight: 500;
-                text-decoration: none;
-                border: none;
-                cursor: pointer;
-                transition:
-                    background 0.2s,
-                    transform 0.15s;
+                background: var(--blue); color: white;
+                padding: 13px 28px; border-radius: var(--radius-sm);
+                font-size: 15px; font-weight: 500; text-decoration: none;
+                border: none; cursor: pointer; transition: background 0.2s, transform 0.15s;
             }
-            .btn-primary:hover {
-                background: var(--blue-dark);
-                transform: translateY(-1px);
-            }
+            .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
             .btn-ghost {
-                background: transparent;
-                color: var(--blue-dark);
-                padding: 13px 28px;
-                border-radius: var(--radius-sm);
-                font-size: 15px;
-                font-weight: 500;
-                border: 1.5px solid var(--blue);
-                text-decoration: none;
-                cursor: pointer;
-                transition: background 0.2s;
+                background: transparent; color: var(--blue-dark);
+                padding: 13px 28px; border-radius: var(--radius-sm);
+                font-size: 15px; font-weight: 500; border: 1.5px solid var(--blue);
+                text-decoration: none; cursor: pointer; transition: background 0.2s;
             }
-            .btn-ghost:hover {
-                background: var(--blue-light);
-            }
+            .btn-ghost:hover { background: var(--blue-light); }
 
-            /* ── CHAT MOCK ── */
+            /* ── CHAT MOCK - WHATSAPP STYLE ── */
             .chat-mock {
-                max-width: 340px;
-                margin: 3rem auto 0;
-                background: white;
-                border-radius: 20px;
-                border: 1.5px solid var(--border);
-                overflow: hidden;
-                box-shadow: 0 8px 40px rgba(26, 107, 204, 0.1);
+                max-width: 280px; margin: 3rem auto 0;
+                border-radius: 42px; overflow: hidden;
+                background: #000;
+                border: 10px solid #000;
+                box-shadow: 0 0 0 1px #333, 0 32px 80px rgba(0,0,0,0.55);
+                font-family: -apple-system, "Helvetica Neue", sans-serif;
             }
-            .chat-header {
-                background: #075e54;
-                color: white;
-                padding: 14px 16px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
+            /* status bar */
+            .wa-statusbar {
+                background: #202C33;
+                padding: 6px 16px 4px;
+                display: flex; align-items: center; justify-content: space-between;
             }
-            .chat-avatar {
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                background: #128c7e;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: "Sora", sans-serif;
-                font-size: 15px;
-                font-weight: 600;
+            .wa-statusbar .sb-time { font-size: 11px; font-weight: 600; color: white; letter-spacing: -0.2px; }
+            .sb-icons { display: flex; align-items: center; gap: 5px; }
+            /* header */
+            .wa-header {
+                background: #202C33; color: white;
+                padding: 8px 12px 10px;
+                display: flex; align-items: center; gap: 8px;
             }
-            .chat-info .chat-name {
-                font-size: 14px;
-                font-weight: 600;
+            .wa-back { font-size: 22px; color: white; line-height: 1; padding-right: 2px; }
+            .wa-avatar {
+                width: 36px; height: 36px; border-radius: 50%;
+                background: #1a6bcc;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 7px; font-weight: 900; color: white;
+                letter-spacing: 0.5px; text-align: center; flex-shrink: 0;
             }
-            .chat-info .chat-status {
-                font-size: 11px;
-                opacity: 0.85;
-                color: #25d366;
+            .wa-info { flex: 1; }
+            .wa-info .wa-name { font-size: 14px; font-weight: 700; line-height: 1.2; }
+            .wa-info .wa-status { font-size: 11px; color: rgba(255,255,255,0.7); }
+            .wa-hicons { display: flex; gap: 14px; align-items: center; }
+            /* body */
+            .wa-body {
+                background: #0B141A;
+                background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M200 50 Q250 100 200 150 Q150 200 200 250 Q250 300 200 350' stroke='%23ffffff' stroke-opacity='0.015' stroke-width='40' fill='none'/%3E%3C/svg%3E");
+                padding: 8px 8px 10px;
+                display: flex; flex-direction: column; gap: 5px;
+                min-height: 370px;
             }
-            .chat-body {
-                padding: 14px;
-                background: #ece5dd;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
+            .wa-date { text-align: center; margin: 4px 0 6px; align-self: center; }
+            .wa-date span {
+                background: rgba(0,0,0,0.35); color: #d1d7db;
+                font-size: 10px; padding: 3px 10px; border-radius: 6px;
             }
-            .bubble {
-                padding: 9px 13px;
-                border-radius: 12px;
-                font-size: 13px;
-                line-height: 1.5;
-                max-width: 88%;
+            .wa-bubble {
+                padding: 6px 8px 4px;
+                font-size: 11.5px; line-height: 1.45;
+                max-width: 84%; position: relative;
             }
-            .bubble.bot {
-                background: #ffffff;
-                border-radius: 2px 12px 12px 12px;
-                align-self: flex-start;
-                color: #111;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            .wa-bubble.bot {
+                background: #202C33; color: #e9edef;
+                border-radius: 0 8px 8px 8px; align-self: flex-start;
             }
-            .bubble.user {
-                background: #dcf8c6;
-                color: #111;
-                border-radius: 12px 2px 12px 12px;
-                align-self: flex-end;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            .wa-bubble.user {
+                background: #005C4B; color: #e9edef;
+                border-radius: 8px 0 8px 8px; align-self: flex-end;
             }
-            .bubble.rider {
-                background: #ffffff;
-                color: #111;
-                border-radius: 2px 12px 12px 12px;
-                align-self: flex-start;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-                border-left: 3px solid #25d366;
+            .wa-meta { display: flex; justify-content: flex-end; align-items: center; gap: 3px; margin-top: 2px; }
+            .wa-time { font-size: 9.5px; color: rgba(255,255,255,0.45); }
+            .wa-ticks { font-size: 9.5px; color: #53BDEB; }
+            .wa-bold { font-weight: 700; margin-bottom: 4px; color: #e9edef; font-size: 12px; }
+            .wa-nitem { display: flex; align-items: center; gap: 5px; margin: 3px 0; font-size: 11.5px; color: #e9edef; }
+            .wa-nbadge {
+                background: #2a3942; color: #e9edef;
+                border-radius: 3px; padding: 1px 6px;
+                font-size: 10px; font-weight: 700; flex-shrink: 0;
             }
-
-            /* ── SECTION SHARED ── */
-            .section {
-                padding: 5rem 2rem;
+            .wa-mrow { font-size: 11.5px; color: #e9edef; margin: 2px 0; }
+            .wa-shead { font-size: 12px; font-weight: 700; margin-bottom: 5px; color: #e9edef; }
+            /* input bar */
+            .wa-inputbar {
+                background: #202C33; padding: 7px 8px;
+                display: flex; align-items: center; gap: 7px;
             }
-            .section-inner {
-                max-width: 1000px;
-                margin: 0 auto;
+            .wa-inputbox {
+                flex: 1; background: #2A3942; border-radius: 20px;
+                padding: 7px 12px; display: flex; align-items: center; gap: 6px;
             }
-            .section-label {
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: var(--blue);
-                margin-bottom: 0.5rem;
+            .wa-placeholder { flex: 1; font-size: 11.5px; color: #8696A0; }
+            .wa-micbtn {
+                width: 36px; height: 36px; border-radius: 50%;
+                background: #00A884; display: flex;
+                align-items: center; justify-content: center; flex-shrink: 0;
             }
-            .section-title {
-                font-family: "Sora", sans-serif;
-                font-size: clamp(1.5rem, 3vw, 2rem);
-                font-weight: 600;
-                margin-bottom: 0.75rem;
+            /* home bar */
+            .wa-home {
+                background: #0B141A; height: 20px;
+                display: flex; align-items: center; justify-content: center;
             }
-            .section-sub {
-                font-size: 16px;
-                color: var(--text-muted);
-                max-width: 520px;
+            .wa-home::after {
+                content: ''; width: 72px; height: 3px;
+                background: rgba(255,255,255,0.22); border-radius: 2px;
             }
 
-            /* ── HOW IT WORKS ── */
-            .steps {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 16px;
-                margin-top: 2.5rem;
-            }
-            .step {
-                background: var(--white);
-                border: 1px solid var(--border);
-                border-radius: var(--radius);
-                padding: 1.5rem;
-                position: relative;
-                transition:
-                    border-color 0.2s,
-                    box-shadow 0.2s;
-            }
-            .step:hover {
-                border-color: var(--blue);
-                box-shadow: 0 4px 20px rgba(26, 107, 204, 0.08);
-            }
-            .step-num {
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                background: var(--blue-light);
-                color: var(--blue-dark);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 13px;
-                font-weight: 600;
-                margin-bottom: 14px;
-            }
-            .step h3 {
-                font-size: 15px;
-                font-weight: 600;
-                margin-bottom: 6px;
-            }
-            .step p {
-                font-size: 13px;
-                color: var(--text-muted);
-                line-height: 1.5;
-            }
+            /* SECTION SHARED */
+            .section { padding: 5rem 2rem; }
+            .section-inner { max-width: 1000px; margin: 0 auto; }
+            .section-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+            .section-title { font-family: "Sora", sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; margin-bottom: 0.75rem; }
+            .section-sub { font-size: 16px; color: var(--text-muted); max-width: 520px; }
 
-            /* ── FEATURES ── */
-            .features-bg {
-                background: var(--off-white);
-            }
-            .features {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-                gap: 16px;
-                margin-top: 2.5rem;
-            }
-            .feat {
-                background: white;
-                border-radius: var(--radius);
-                border: 1px solid var(--border);
-                padding: 1.5rem;
-                transition: transform 0.2s;
-            }
-            .feat:hover {
-                transform: translateY(-3px);
-            }
-            .feat-icon {
-                width: 42px;
-                height: 42px;
-                border-radius: 10px;
-                background: var(--blue-light);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 14px;
-            }
-            .feat-icon svg {
-                width: 20px;
-                height: 20px;
-                stroke: var(--blue);
-                fill: none;
-                stroke-width: 2;
-                stroke-linecap: round;
-            }
-            .feat h3 {
-                font-size: 15px;
-                font-weight: 600;
-                margin-bottom: 6px;
-            }
-            .feat p {
-                font-size: 13px;
-                color: var(--text-muted);
-                line-height: 1.5;
-            }
+            /* HOW IT WORKS */
+            .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 2.5rem; }
+            .step { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: border-color 0.2s, box-shadow 0.2s; }
+            .step:hover { border-color: var(--blue); box-shadow: 0 4px 20px rgba(26,107,204,0.08); }
+            .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--blue-light); color: var(--blue-dark); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+            .step h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+            .step p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
-            /* ── PRIVACY ── */
-            .privacy-card {
-                background: white;
-                border: 1px solid var(--border);
-                border-radius: var(--radius);
-                padding: 2rem;
-                margin-top: 2rem;
-            }
-            .privacy-card h3 {
-                font-size: 15px;
-                font-weight: 600;
-                margin: 1.25rem 0 0.4rem;
-                color: var(--blue-dark);
-            }
-            .privacy-card h3:first-child {
-                margin-top: 0;
-            }
-            .privacy-card p {
-                font-size: 14px;
-                color: var(--text-muted);
-                line-height: 1.7;
-            }
+            /* FEATURES */
+            .features-bg { background: var(--off-white); }
+            .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 2.5rem; }
+            .feat { background: white; border-radius: var(--radius); border: 1px solid var(--border); padding: 1.5rem; transition: transform 0.2s; }
+            .feat:hover { transform: translateY(-3px); }
+            .feat-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--blue-light); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+            .feat-icon svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; }
+            .feat h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+            .feat p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
-            /* ── CONTACT ── */
-            .contact-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 16px;
-                margin-top: 2rem;
-            }
-            .contact-item {
-                background: var(--blue-light);
-                border-radius: var(--radius);
-                padding: 1.25rem;
-                border: 1px solid rgba(26, 107, 204, 0.15);
-            }
-            .contact-item .label {
-                font-size: 12px;
-                font-weight: 600;
-                color: var(--blue);
-                text-transform: uppercase;
-                letter-spacing: 0.08em;
-                margin-bottom: 6px;
-            }
-            .contact-item .value {
-                font-size: 14px;
-                color: var(--blue-dark);
-                font-weight: 500;
-            }
-            .contact-item a {
-                color: var(--blue-dark);
-                text-decoration: none;
-            }
+            /* PRIVACY */
+            .privacy-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-top: 2rem; }
+            .privacy-card h3 { font-size: 15px; font-weight: 600; margin: 1.25rem 0 0.4rem; color: var(--blue-dark); }
+            .privacy-card h3:first-child { margin-top: 0; }
+            .privacy-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
 
-            /* ── FOOTER ── */
-            footer {
-                background: var(--text);
-                color: rgba(255, 255, 255, 0.6);
-                padding: 2.5rem 2rem;
-                text-align: center;
-            }
-            .footer-inner {
-                max-width: 1000px;
-                margin: 0 auto;
-            }
-            .footer-logo {
-                font-family: "Sora", sans-serif;
-                color: white;
-                font-size: 18px;
-                font-weight: 600;
-                margin-bottom: 1rem;
-            }
-            .footer-links {
-                display: flex;
-                gap: 20px;
-                justify-content: center;
-                flex-wrap: wrap;
-                margin-bottom: 1rem;
-            }
-            .footer-links a {
-                font-size: 13px;
-                color: rgba(255, 255, 255, 0.5);
-                text-decoration: none;
-            }
-            .footer-links a:hover {
-                color: white;
-            }
-            .footer-copy {
-                font-size: 12px;
-            }
+            /* CONTACT */
+            .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 2rem; }
+            .contact-item { background: var(--blue-light); border-radius: var(--radius); padding: 1.25rem; border: 1px solid rgba(26,107,204,0.15); }
+            .contact-item .label { font-size: 12px; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+            .contact-item .value { font-size: 14px; color: var(--blue-dark); font-weight: 500; }
+            .contact-item a { color: var(--blue-dark); text-decoration: none; }
+
+            /* FOOTER */
+            footer { background: var(--text); color: rgba(255,255,255,0.6); padding: 2.5rem 2rem; text-align: center; }
+            .footer-inner { max-width: 1000px; margin: 0 auto; }
+            .footer-logo { font-family: "Sora", sans-serif; color: white; font-size: 18px; font-weight: 600; margin-bottom: 1rem; }
+            .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+            .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; }
+            .footer-links a:hover { color: white; }
+            .footer-copy { font-size: 12px; }
 
             @media (max-width: 600px) {
-                .nav-links {
-                    display: none;
-                }
-                .hero {
-                    padding: 4rem 1.25rem 2.5rem;
-                }
+                .nav-links { display: none; }
+                .hero { padding: 4rem 1.25rem 2.5rem; }
             }
         </style>
     </head>
@@ -534,59 +274,149 @@
                     <li><a href="#privacy">Privacy Policy</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <span class="nav-cta coming-soon">Coming soon</span>
+                <span class="coming-soon">Coming soon</span>
             </div>
         </nav>
 
         <!-- HERO -->
         <section class="hero">
-            <div class="hero-badge">
-                <span></span> WhatsApp approval in progress
-            </div>
-            <h1>
-                Order food. <em>Negotiate</em> delivery.<br />All on WhatsApp.
-            </h1>
-            <p>
-                Brida is an AI-powered food ordering bot that lets you browse
-                menus, place orders, and haggle your delivery fee — without
-                leaving WhatsApp.
-            </p>
+            <div class="hero-badge"><span></span> WhatsApp approval in progress</div>
+            <h1>Order food. <em>Negotiate</em> delivery.<br />All on WhatsApp.</h1>
+            <p>Brida is an AI-powered food ordering bot that lets you browse menus, place orders, and haggle your delivery fee — without leaving WhatsApp.</p>
             <div class="hero-btns">
-                <a href="mailto:hello@brigado.com" class="btn-primary"
-                    >Get early access</a
-                >
+                <a href="mailto:hello@bridago.com" class="btn-primary">Get early access</a>
                 <a href="#how" class="btn-ghost">See how it works</a>
             </div>
 
+            <!-- WHATSAPP PHONE MOCK -->
             <div class="chat-mock">
-                <div class="chat-header">
-                    <div class="chat-avatar">B</div>
-                    <div class="chat-info">
-                        <div class="chat-name">Brida</div>
-                        <div class="chat-status">● online</div>
+                <!-- status bar -->
+                <div class="wa-statusbar">
+                    <span class="sb-time">19:57</span>
+                    <div class="sb-icons">
+                        <!-- signal -->
+                        <svg width="15" height="11" viewBox="0 0 15 11" fill="white">
+                            <rect x="0" y="6" width="2.5" height="5" rx="0.4"/>
+                            <rect x="4" y="4" width="2.5" height="7" rx="0.4"/>
+                            <rect x="8" y="2" width="2.5" height="9" rx="0.4"/>
+                            <rect x="12" y="0" width="2.5" height="11" rx="0.4" opacity="0.3"/>
+                        </svg>
+                        <!-- wifi -->
+                        <svg width="14" height="11" viewBox="0 0 24 18" fill="white">
+                            <path d="M12 14a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+                            <path d="M5.5 10C7.4 8.1 9.6 7 12 7s4.6 1.1 6.5 3l1.5-1.5C17.6 6.1 14.9 5 12 5S6.4 6.1 4 8.5L5.5 10z"/>
+                            <path d="M1 5.5C4 2.5 7.8 1 12 1s8 1.5 11 4.5L21.5 4C18 .8 15.2 0 12 0S6 .8 2.5 4L1 5.5z" opacity="0.5"/>
+                        </svg>
+                        <!-- battery -->
+                        <svg width="22" height="11" viewBox="0 0 22 11">
+                            <rect x="0.5" y="0.5" width="18" height="10" rx="2" stroke="white" stroke-width="1" fill="none"/>
+                            <rect x="1.5" y="1.5" width="13" height="8" rx="1.5" fill="white"/>
+                            <path d="M20 3.5v4c1-.5 1.5-1.2 1.5-2s-.5-1.5-1.5-2z" fill="white"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="chat-body">
-                    <div class="bubble bot">
-                        Hi! Welcome to Brida. What would you like to order
-                        today?
+
+                <!-- whatsapp header -->
+                <div class="wa-header">
+                    <span class="wa-back">&#8249;</span>
+                    <div class="wa-avatar">BRIDA</div>
+                    <div class="wa-info">
+                        <div class="wa-name">BRIDA</div>
+                        <div class="wa-status">online</div>
                     </div>
-                    <div class="bubble user">
-                        1 jollof rice + grilled chicken
-                    </div>
-                    <div class="bubble bot">
-                        Your food total is <strong>₦3,500</strong>. Connecting
-                        you with a rider now...
-                    </div>
-                    <div class="bubble rider">
-                        Hi! I can deliver for <strong>₦800</strong>. Want to
-                        negotiate?
-                    </div>
-                    <div class="bubble user">How about ₦400?</div>
-                    <div class="bubble rider">
-                        Deal at <strong>₦600</strong>! ✓ Order confirmed.
+                    <div class="wa-hicons">
+                        <!-- phone icon -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                            <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+                        </svg>
+                        <!-- 3 dots -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                            <circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/>
+                        </svg>
                     </div>
                 </div>
+
+                <!-- chat body -->
+                <div class="wa-body">
+                    <div class="wa-date"><span>Today</span></div>
+
+                    <div class="wa-bubble user">
+                        Hi, I want to eat rice and chicken
+                        <div class="wa-meta"><span class="wa-time">19:54</span><span class="wa-ticks">✓✓</span></div>
+                    </div>
+
+                    <div class="wa-bubble bot">
+                        Alright! Here is our menu 🍽️
+                        <div style="height:5px"></div>
+                        <div class="wa-bold">Select a restaurant:</div>
+                        <div class="wa-nitem"><span class="wa-nbadge">1</span> Axil Restaurant</div>
+                        <div class="wa-nitem"><span class="wa-nbadge">2</span> Mama Put Kitchen</div>
+                        <div class="wa-nitem"><span class="wa-nbadge">3</span> Chop Life Eatery</div>
+                        <div class="wa-meta"><span class="wa-time">19:55</span></div>
+                    </div>
+
+                    <div class="wa-bubble user">
+                        Axil Restaurant
+                        <div class="wa-meta"><span class="wa-time">19:55</span><span class="wa-ticks">✓✓</span></div>
+                    </div>
+
+                    <div class="wa-bubble bot">
+                        Here is the menu for Axil Restaurant:
+                        <div style="height:5px"></div>
+                        <div class="wa-mrow">📦 Fried Chicken – ₦2,000</div>
+                        <div class="wa-mrow">🍗 Jollof Rice – ₦1,800</div>
+                        <div class="wa-mrow">🥭 Mango Smoothie – ₦1,500</div>
+                        <div style="height:3px"></div>
+                        Reply with a number to select an item.
+                        <div class="wa-meta"><span class="wa-time">19:56</span></div>
+                    </div>
+
+                    <div class="wa-bubble user">
+                        1
+                        <div class="wa-meta"><span class="wa-time">19:56</span><span class="wa-ticks">✓✓</span></div>
+                    </div>
+
+                    <div class="wa-bubble bot">
+                        <div class="wa-shead">✅ Order Summary</div>
+                        <div class="wa-mrow">🏪 Axil Restaurant</div>
+                        <div class="wa-mrow">🍗 Fried Chicken</div>
+                        <div class="wa-mrow">💰 Total: ₦2,000</div>
+                        <div class="wa-meta"><span class="wa-time">19:56</span></div>
+                    </div>
+                </div>
+
+                <!-- input bar -->
+                <div class="wa-inputbar">
+                    <!-- attach -->
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8696A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66L9.41 17.41a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                    </svg>
+                    <div class="wa-inputbox">
+                        <!-- emoji -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8696A0" stroke-width="1.8" stroke-linecap="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                            <line x1="9" y1="9" x2="9.01" y2="9" stroke-width="2.5"/>
+                            <line x1="15" y1="9" x2="15.01" y2="9" stroke-width="2.5"/>
+                        </svg>
+                        <span class="wa-placeholder">Type a message</span>
+                        <!-- camera -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8696A0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                            <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                    </div>
+                    <!-- mic -->
+                    <div class="wa-micbtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 1a4 4 0 0 1 4 4v7a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                            <line x1="12" y1="19" x2="12" y2="23" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="8" y1="23" x2="16" y2="23" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="wa-home"></div>
             </div>
         </section>
 
@@ -595,43 +425,12 @@
             <div class="section-inner">
                 <div class="section-label">How it works</div>
                 <div class="section-title">Four steps. Zero apps.</div>
-                <div class="section-sub">
-                    Everything happens inside WhatsApp — the app you already
-                    have.
-                </div>
+                <div class="section-sub">Everything happens inside WhatsApp — the app you already have.</div>
                 <div class="steps">
-                    <div class="step">
-                        <div class="step-num">1</div>
-                        <h3>Send a message</h3>
-                        <p>
-                            Open WhatsApp, message Brida, and tell us what you
-                            want to eat.
-                        </p>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">2</div>
-                        <h3>Confirm your order</h3>
-                        <p>
-                            Our restaurant agent shows your items and a fixed
-                            food total.
-                        </p>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">3</div>
-                        <h3>Negotiate delivery</h3>
-                        <p>
-                            A rider agent proposes a fee. You counter, they
-                            respond — until you both agree.
-                        </p>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">4</div>
-                        <h3>Order dispatched</h3>
-                        <p>
-                            Confirm the final summary and your food is on its
-                            way.
-                        </p>
-                    </div>
+                    <div class="step"><div class="step-num">1</div><h3>Send a message</h3><p>Open WhatsApp, message Brida, and tell us what you want to eat.</p></div>
+                    <div class="step"><div class="step-num">2</div><h3>Confirm your order</h3><p>Our restaurant agent shows your items and a fixed food total.</p></div>
+                    <div class="step"><div class="step-num">3</div><h3>Negotiate delivery</h3><p>A rider agent proposes a fee. You counter, they respond — until you both agree.</p></div>
+                    <div class="step"><div class="step-num">4</div><h3>Order dispatched</h3><p>Confirm the final summary and your food is on its way.</p></div>
                 </div>
             </div>
         </section>
@@ -641,109 +440,37 @@
             <div class="section-inner">
                 <div class="section-label">Features</div>
                 <div class="section-title">Built different.</div>
-                <div class="section-sub">
-                    Not just another food app — a smarter, fairer way to order.
-                </div>
+                <div class="section-sub">Not just another food app — a smarter, fairer way to order.</div>
                 <div class="features">
                     <div class="feat">
-                        <div class="feat-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                                />
-                            </svg>
-                        </div>
+                        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
                         <h3>Negotiate your delivery fee</h3>
-                        <p>
-                            Unlike every other platform, Brida lets you haggle
-                            with a live real rider until you both agree on a
-                            fair price.
-                        </p>
+                        <p>Unlike every other platform, Brida lets you haggle with a live real rider until you both agree on a fair price.</p>
                     </div>
                     <div class="feat">
-                        <div class="feat-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                                />
-                            </svg>
-                        </div>
+                        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
                         <h3>100% WhatsApp-native</h3>
-                        <p>
-                            No app to download, no account to create. Just send
-                            a message and order in seconds.
-                        </p>
+                        <p>No app to download, no account to create. Just send a message and order in seconds.</p>
                     </div>
                     <div class="feat">
-                        <div class="feat-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                                />
-                            </svg>
-                        </div>
+                        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
                         <h3>AI-powered agents</h3>
-                        <p>
-                            Three specialized agents — orchestrator, restaurant,
-                            and rider — handle your order seamlessly behind the
-                            scenes.
-                        </p>
+                        <p>Three specialized agents — orchestrator, restaurant, and rider — handle your order seamlessly behind the scenes.</p>
                     </div>
                     <div class="feat">
-                        <div class="feat-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-                                />
-                            </svg>
-                        </div>
+                        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
                         <h3>Secure & private</h3>
-                        <p>
-                            Your data is never sold or shared with third
-                            parties. We only use it to fulfill your orders.
-                        </p>
+                        <p>Your data is never sold or shared with third parties. We only use it to fulfill your orders.</p>
                     </div>
                     <div class="feat">
-                        <div class="feat-icon">
-                            <svg viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10" />
-                                <polyline points="12 6 12 12 16 14" />
-                            </svg>
-                        </div>
+                        <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
                         <h3>Fast confirmation</h3>
-                        <p>
-                            From first message to confirmed order in minutes,
-                            with a full summary before you commit.
-                        </p>
+                        <p>From first message to confirmed order in minutes, with a full summary before you commit.</p>
                     </div>
                     <div class="feat">
-                        <div class="feat-icon">
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <text
-                                    x="3"
-                                    y="19"
-                                    font-size="18"
-                                    font-weight="bold"
-                                    stroke="none"
-                                    fill="var(--blue)"
-                                    font-family="serif"
-                                >
-                                    ₦
-                                </text>
-                            </svg>
-                        </div>
+                        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><text x="3" y="19" font-size="18" font-weight="bold" stroke="none" fill="var(--blue)" font-family="serif">₦</text></svg></div>
                         <h3>Transparent pricing</h3>
-                        <p>
-                            Food prices are fixed and clear. Delivery is
-                            negotiated openly. No hidden fees, ever.
-                        </p>
+                        <p>Food prices are fixed and clear. Delivery is negotiated openly. No hidden fees, ever.</p>
                     </div>
                 </div>
             </div>
@@ -756,51 +483,19 @@
                 <div class="section-title">Privacy Policy</div>
                 <div class="section-sub">Last updated: June 2025</div>
                 <div class="privacy-card">
-                    <p>
-                        Brida ("we", "our", or "us") is committed to protecting
-                        your personal information. This Privacy Policy explains
-                        how we collect, use, and safeguard your data when you
-                        use our WhatsApp-based food ordering service.
-                    </p>
+                    <p>Brida ("we", "our", or "us") is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our WhatsApp-based food ordering service.</p>
                     <h3>Information we collect</h3>
-                    <p>
-                        When you interact with Brida via WhatsApp, we may
-                        collect your WhatsApp phone number, order history and
-                        preferences, delivery address if provided, and chat
-                        history within the service session.
-                    </p>
+                    <p>When you interact with Brida via WhatsApp, we may collect your WhatsApp phone number, order history and preferences, delivery address if provided, and chat history within the service session.</p>
                     <h3>How we use your information</h3>
-                    <p>
-                        We use your data solely to process and fulfill your food
-                        orders, improve our AI agents and service quality, and
-                        communicate order updates with you via WhatsApp.
-                    </p>
+                    <p>We use your data solely to process and fulfill your food orders, improve our AI agents and service quality, and communicate order updates with you via WhatsApp.</p>
                     <h3>Data sharing</h3>
-                    <p>
-                        We do not sell, trade, or share your personal
-                        information with third parties for marketing purposes.
-                        Order details may be shared with our restaurant and
-                        delivery partners solely to fulfill your order.
-                    </p>
+                    <p>We do not sell, trade, or share your personal information with third parties for marketing purposes. Order details may be shared with our restaurant and delivery partners solely to fulfill your order.</p>
                     <h3>Data retention</h3>
-                    <p>
-                        Your session and order data is retained for up to 90
-                        days for service improvement purposes, after which it is
-                        anonymized or deleted.
-                    </p>
+                    <p>Your session and order data is retained for up to 90 days for service improvement purposes, after which it is anonymized or deleted.</p>
                     <h3>Your rights</h3>
-                    <p>
-                        You have the right to request access to, correction of,
-                        or deletion of your personal data at any time by
-                        contacting us at the details below.
-                    </p>
+                    <p>You have the right to request access to, correction of, or deletion of your personal data at any time by contacting us at the details below.</p>
                     <h3>Changes to this policy</h3>
-                    <p>
-                        We may update this Privacy Policy from time to time. Any
-                        changes will be posted on this page with an updated
-                        date. Continued use of Brida after changes constitutes
-                        acceptance of the revised policy.
-                    </p>
+                    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated date. Continued use of Brida after changes constitutes acceptance of the revised policy.</p>
                 </div>
             </div>
         </section>
@@ -810,9 +505,7 @@
             <div class="section-inner">
                 <div class="section-label">Get in touch</div>
                 <div class="section-title">Contact us</div>
-                <div class="section-sub">
-                    Have questions or need support? We're here to help.
-                </div>
+                <div class="section-sub">Have questions or need support? We're here to help.</div>
                 <div class="contact-grid">
                     <div class="contact-item">
                         <div class="label">Business name</div>
@@ -820,17 +513,15 @@
                     </div>
                     <div class="contact-item">
                         <div class="label">Email</div>
-                        <a href="mailto:hello@bridago.com">hello@bridago.com</a>
+                        <div class="value"><a href="mailto:hello@bridago.com">hello@bridago.com</a></div>
                     </div>
                     <div class="contact-item">
                         <div class="label">WhatsApp</div>
-                        <div class="value">
-                            <a href="#">+234 811 941 1510</a>
-                        </div>
+                        <div class="value"><a href="https://wa.me/2348119411510" target="_blank">+234 811 941 1510</a></div>
                     </div>
                     <div class="contact-item">
                         <div class="label">Response time</div>
-                        <div class="value">the response is immediate</div>
+                        <div class="value">Immediate</div>
                     </div>
                 </div>
             </div>
@@ -846,9 +537,7 @@
                     <a href="#privacy">Privacy Policy</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <div class="footer-copy">
-                    © 2026 ODINALA VENTURES. All rights reserved.
-                </div>
+                <div class="footer-copy">© 2026 ODINALA VENTURES. All rights reserved.</div>
             </div>
         </footer>
     </body>
